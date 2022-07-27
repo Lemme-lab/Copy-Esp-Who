@@ -412,7 +412,7 @@
                                 <option value="7">HVGA(480x320)</option>
                                 <option value="6">CIF(400x296)</option>
                                 <option value="5">QVGA(320x240)</option>
-                                <option value="4">240x240</option>
+                                <option value="4">255x255</option>
                                 <option value="3">HQVGA(240x176)</option>
                                 <option value="2">QCIF(176x144)</option>
                                 <option value="1">QQVGA(160x120)</option>
@@ -686,6 +686,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   const setResButton = document.getElementById('set-resolution')
+
   setResButton.onclick = () => {
     let start_x = parseInt(document.getElementById('start-x').value);
     console.log(start_x)
@@ -697,6 +698,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let output_y = parseInt(document.getElementById('output-y').value);
 
     setWindow(start_x, 0, 0, 0, offset_x, offset_y, total_x, total_y, output_x, output_y, false, false, function(code, txt){
+      if(code != 200){
+        alert('Error['+code+']: '+txt);
+      }
+    });
+  }
+
+  const setCamRes = () => {
+    let offset_x = parseInt(document.getElementById('offset-x').value);
+    let offset_y = parseInt(document.getElementById('offset-y').value);
+    let total_x = parseInt(document.getElementById('total-x').value);
+    let total_y = parseInt(document.getElementById('total-y').value);
+    let output_x = parseInt(document.getElementById('output-x').value);
+    let output_y = parseInt(document.getElementById('output-y').value);
+
+    setWindow(2, 0, 0, 0, offset_x, offset_y, total_x, total_y, output_x, output_y, false, false, function(code, txt){
       if(code != 200){
         alert('Error['+code+']: '+txt);
       }
@@ -800,6 +816,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   const updateValue = (el, value, updateRemote) => {
+    
+    
     updateRemote = updateRemote == null ? true : updateRemote
     let initialValue
     if (el.type === 'checkbox') {
@@ -812,6 +830,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     }
 
     if (updateRemote && initialValue !== value) {
+      
       updateConfig(el);
     } else if(!updateRemote){
       if(el.id === "aec"){
@@ -835,6 +854,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   function updateConfig (el) {
+    console.log("ahhhhh");
     let value
     switch (el.type) {
       case 'checkbox':
@@ -932,6 +952,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   enrollButton.onclick = () => {
+    
     updateConfig(enrollButton)
   }
 
@@ -998,6 +1019,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const framesize = document.getElementById('framesize')
 
   framesize.onchange = () => {
+    console.log("ugabunga");
     updateConfig(framesize)
     if (framesize.value > 5) {
       updateValue(detect, false)
@@ -1007,10 +1029,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   detect.onchange = () => {
     if (framesize.value > 5) {
-      alert("Please select CIF or lower resolution before enabling this feature!");
-      updateValue(detect, false)
-      return;
+      alert("Changing to lower Res.");
+      framesize.value = 4;
+      updateConfig(framesize)      
     }
+    setCamRes();
     updateConfig(detect)
     if (!detect.checked) {
       disable(enrollButton)
@@ -1020,10 +1043,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   recognize.onchange = () => {
     if (framesize.value > 5) {
-      alert("Please select CIF or lower resolution before enabling this feature!");
-      updateValue(recognize, false)
-      return;
+      alert("Changing to lower Res.");
+      framesize.value = 4;
+      updateConfig(framesize) 
     }
+    setCamRes();
     updateConfig(recognize)
     if (recognize.checked) {
       enable(enrollButton)
