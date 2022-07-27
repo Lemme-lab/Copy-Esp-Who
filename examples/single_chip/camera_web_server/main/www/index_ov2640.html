@@ -618,49 +618,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
       });
   }
 
-  const detect = document.getElementById('face_detect')
-  const recognize = document.getElementById('face_recognize')
-  const framesize = document.getElementById('framesize')
-
-  framesize.onchange = () => {
-    console.log("ugabunga");
-    updateConfig(framesize)
-    if (framesize.value > 5) {
-      updateValue(detect, false)
-      updateValue(recognize, false)
-    }
-  }
-
-  detect.onchange = () => {
-    if (framesize.value > 5) {
-      alert("Changing to lower Res.");
-      framesize.value = 4;
-      updateConfig(framesize)      
-    }
-    setCamRes();
-    updateConfig(detect)
-    if (!detect.checked) {
-      disable(enrollButton)
-      updateValue(recognize, false)
-    }
-  }
-
-  recognize.onchange = () => {
-    if (framesize.value > 5) {
-      alert("Changing to lower Res.");
-      framesize.value = 4;
-      updateConfig(framesize) 
-    }
-    setCamRes();
-    updateConfig(recognize)
-    if (recognize.checked) {
-      enable(enrollButton)
-      updateValue(detect, true)
-    } else {
-      disable(enrollButton)
-    }
-  }
-
   function setReg(reg, offset, mask, value, cb){
     //console.log('Set Reg', '0x'+reg.toString(16), offset, '0x'+mask.toString(16), '0x'+value.toString(16), '('+value+')');
     value = (value & mask) << offset;
@@ -1057,6 +1014,53 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   // Detection and framesize
+  const detect = document.getElementById('face_detect')
+  const recognize = document.getElementById('face_recognize')
+  const framesize = document.getElementById('framesize')
+
+  framesize.onchange = () => {
+    console.log("ugabunga");
+    updateConfig(framesize)
+    if (framesize.value > 5) {
+      updateValue(detect, false)
+      updateValue(recognize, false)
+    }
+  }
+
+  detect.onchange = () => {
+    if (framesize.value > 5) {
+      alert("Changing to lower Res.");
+      framesize.value = 4;
+      updateConfig(framesize)      
+    }
+    setCamRes();
+    updateConfig(detect)
+    if (!detect.checked) {
+      disable(enrollButton)
+      updateValue(recognize, false)
+    }
+  }
+
+  recognize.onchange = () => {
+    if (framesize.value > 5) {
+      alert("Changing to lower Res.");
+      framesize.value = 4;
+      updateConfig(framesize) 
+    }
+    setCamRes();
+    updateConfig(recognize)
+    if (recognize.checked) {
+      enable(enrollButton)
+      updateValue(detect, true)
+    } else {
+      disable(enrollButton)
+    }
+  }
+
+
+
+
+
   
 })
 
