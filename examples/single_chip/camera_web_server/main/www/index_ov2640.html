@@ -618,6 +618,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
       });
   }
 
+  const detect = document.getElementById('face_detect')
+  const recognize = document.getElementById('face_recognize')
+  const framesize = document.getElementById('framesize')
+
   framesize.onchange = () => {
     console.log("ugabunga");
     updateConfig(framesize)
@@ -1053,9 +1057,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   // Detection and framesize
-  const detect = document.getElementById('face_detect')
-  const recognize = document.getElementById('face_recognize')
-  const framesize = document.getElementById('framesize')
+  
 })
 
         </script>
