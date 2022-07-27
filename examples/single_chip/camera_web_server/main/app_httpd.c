@@ -194,6 +194,15 @@ static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, in
     fb.data = image_matrix->item;
     fb.bytes_per_pixel = 3;
     fb.format = FB_BGR888;
+
+
+    int x0, y0, j;
+     for (j = 0; j < 10; j+=2) {
+            x0 = (int)boxes->landmark[i].landmark_p[j];
+            y0 = (int)boxes->landmark[i].landmark_p[j+1];
+            fb_gfx_fillRect(&fb, x0, y0, 3, 3, color);
+     }
+
     for (i = 0; i < boxes->len; i++)
     {
         // rectangle box
@@ -207,12 +216,7 @@ static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, in
         fb_gfx_drawFastVLine(&fb, x + w - 1, y, h, color);
 #if 0
         // landmark
-        int x0, y0, j;
-        for (j = 0; j < 10; j+=2) {
-            x0 = (int)boxes->landmark[i].landmark_p[j];
-            y0 = (int)boxes->landmark[i].landmark_p[j+1];
-            fb_gfx_fillRect(&fb, x0, y0, 3, 3, color);
-        }
+
 #endif
     }
 }
