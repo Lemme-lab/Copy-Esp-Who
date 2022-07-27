@@ -546,8 +546,8 @@
 
                             <div class="input-group">
                                 <label for="start-x">Sensor Resolution</label><select id="start-x">
-                                    <option value="2">CIF (400x296)</option>
-                                    <option value="1">SVGA (800x600)</option>
+                                    <option value="2">CIF (255x255)</option>
+                                    <option value="1">SVGA (1000x600)</option>
                                     <option value="0" selected="selected">UXGA (1600x1200)</option>
                                 </select>
                             </div>
@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const setResButton = document.getElementById('set-resolution')
   setResButton.onclick = () => {
     let start_x = parseInt(document.getElementById('start-x').value);
-    console.log(start_x);
+    console.log(start_x)
     let offset_x = parseInt(document.getElementById('offset-x').value);
     let offset_y = parseInt(document.getElementById('offset-y').value);
     let total_x = parseInt(document.getElementById('total-x').value);
