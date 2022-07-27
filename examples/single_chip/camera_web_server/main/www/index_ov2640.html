@@ -425,24 +425,6 @@
                             <input type="range" id="quality" min="4" max="63" value="10" class="default-action">
                             <div class="range-max">63</div>
                         </div>
-                        <div class="input-group" id="brightness-group">
-                            <label for="brightness">Brightness</label>
-                            <div class="range-min">-2</div>
-                            <input type="range" id="brightness" min="-2" max="2" value="0" class="default-action">
-                            <div class="range-max">2</div>
-                        </div>
-                        <div class="input-group" id="contrast-group">
-                            <label for="contrast">Contrast</label>
-                            <div class="range-min">-2</div>
-                            <input type="range" id="contrast" min="-2" max="2" value="0" class="default-action">
-                            <div class="range-max">2</div>
-                        </div>
-                        <div class="input-group" id="saturation-group">
-                            <label for="saturation">Saturation</label>
-                            <div class="range-min">-2</div>
-                            <input type="range" id="saturation" min="-2" max="2" value="0" class="default-action">
-                            <div class="range-max">2</div>
-                        </div>
                         <div class="input-group" id="special_effect-group">
                             <label for="special_effect">Special Effect</label>
                             <select id="special_effect" class="default-action">
@@ -455,20 +437,6 @@
                                 <option value="6">Sepia</option>
                             </select>
                         </div>
-                        <div class="input-group" id="awb-group">
-                            <label for="awb">AWB</label>
-                            <div class="switch">
-                                <input id="awb" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="awb"></label>
-                            </div>
-                        </div>
-                        <div class="input-group" id="awb_gain-group">
-                            <label for="awb_gain">AWB Gain</label>
-                            <div class="switch">
-                                <input id="awb_gain" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="awb_gain"></label>
-                            </div>
-                        </div>
                         <div class="input-group" id="wb_mode-group">
                             <label for="wb_mode">WB Mode</label>
                             <select id="wb_mode" class="default-action">
@@ -479,79 +447,7 @@
                                 <option value="4">Home</option>
                             </select>
                         </div>
-                        <div class="input-group" id="aec-group">
-                            <label for="aec">AEC SENSOR</label>
-                            <div class="switch">
-                                <input id="aec" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="aec"></label>
-                            </div>
-                        </div>
-                        <div class="input-group" id="aec2-group">
-                            <label for="aec2">AEC DSP</label>
-                            <div class="switch">
-                                <input id="aec2" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="aec2"></label>
-                            </div>
-                        </div>
-                        <div class="input-group" id="ae_level-group">
-                            <label for="ae_level">AE Level</label>
-                            <div class="range-min">-2</div>
-                            <input type="range" id="ae_level" min="-2" max="2" value="0" class="default-action">
-                            <div class="range-max">2</div>
-                        </div>
-                        <div class="input-group" id="aec_value-group">
-                            <label for="aec_value">Exposure</label>
-                            <div class="range-min">0</div>
-                            <input type="range" id="aec_value" min="0" max="1200" value="204" class="default-action">
-                            <div class="range-max">1200</div>
-                        </div>
-                        <div class="input-group" id="agc-group">
-                            <label for="agc">AGC</label>
-                            <div class="switch">
-                                <input id="agc" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="agc"></label>
-                            </div>
-                        </div>
-                        <div class="input-group hidden" id="agc_gain-group">
-                            <label for="agc_gain">Gain</label>
-                            <div class="range-min">1x</div>
-                            <input type="range" id="agc_gain" min="0" max="30" value="5" class="default-action">
-                            <div class="range-max">31x</div>
-                        </div>
-                        <div class="input-group" id="gainceiling-group">
-                            <label for="gainceiling">Gain Ceiling</label>
-                            <div class="range-min">2x</div>
-                            <input type="range" id="gainceiling" min="0" max="6" value="0" class="default-action">
-                            <div class="range-max">128x</div>
-                        </div>
-                        <div class="input-group" id="bpc-group">
-                            <label for="bpc">BPC</label>
-                            <div class="switch">
-                                <input id="bpc" type="checkbox" class="default-action">
-                                <label class="slider" for="bpc"></label>
-                            </div>
-                        </div>
-                        <div class="input-group" id="wpc-group">
-                            <label for="wpc">WPC</label>
-                            <div class="switch">
-                                <input id="wpc" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="wpc"></label>
-                            </div>
-                        </div>
-                        <div class="input-group" id="raw_gma-group">
-                            <label for="raw_gma">Raw GMA</label>
-                            <div class="switch">
-                                <input id="raw_gma" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="raw_gma"></label>
-                            </div>
-                        </div>
-                        <div class="input-group" id="lenc-group">
-                            <label for="lenc">Lens Correction</label>
-                            <div class="switch">
-                                <input id="lenc" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="lenc"></label>
-                            </div>
-                        </div>
+                
                         <div class="input-group" id="hmirror-group">
                             <label for="hmirror">H-Mirror</label>
                             <div class="switch">
@@ -566,20 +462,7 @@
                                 <label class="slider" for="vflip"></label>
                             </div>
                         </div>
-                        <div class="input-group" id="dcw-group">
-                            <label for="dcw">DCW (Downsize EN)</label>
-                            <div class="switch">
-                                <input id="dcw" type="checkbox" class="default-action" checked="checked">
-                                <label class="slider" for="dcw"></label>
-                            </div>
-                        </div>
-                        <div class="input-group" id="colorbar-group">
-                            <label for="colorbar">Color Bar</label>
-                            <div class="switch">
-                                <input id="colorbar" type="checkbox" class="default-action">
-                                <label class="slider" for="colorbar"></label>
-                            </div>
-                        </div>
+                    
                         <div class="input-group" id="led-group">
                           <label for="led_intensity">LED Intensity</label>
                           <div class="range-min">0</div>
@@ -611,55 +494,17 @@
                         <label for="nav-toggle-reg" class="toggle-section-label">&#9776;&nbsp;&nbsp;Register Get/Set</label><input type="checkbox" id="nav-toggle-reg" class="hidden toggle-section-button" checked="checked">
                         <section class="toggle-section">
                             <!--h4>Set Register</h4-->
-                            <div class="input-group" id="set-reg-group">
-                                <label for="set-reg">Reg, Mask, Value</label>
-                                <div class="text">
-                                    <input id="reg-addr" type="text" minlength="4" maxlength="6" size="6" value="0x111">
-                                </div>
-                                <div class="text">
-                                    <input id="reg-mask" type="text" minlength="4" maxlength="4" size="4" value="0x80">
-                                </div>
-                                <div class="text">
-                                    <input id="reg-value" type="text" minlength="4" maxlength="4" size="4" value="0x80">
-                                </div>
-                                <button class="inline-button" id="set-reg">Set</button>
-                            </div>
-                            <hr style="width:50%">
                             <!--h4>Get Register</h4-->
-                            <div class="input-group" id="get-reg-group">
-                                <label for="get-reg">Reg, Mask</label>
-                                <div class="text">
-                                    <input id="get-reg-addr" type="text" minlength="4" maxlength="6" size="6" value="0x111">
-                                </div>
-                                <div class="text">
-                                    <input id="get-reg-mask" type="text" minlength="4" maxlength="6" size="6" value="0x80">
-                                </div>
-                                <button class="inline-button" id="get-reg">Get</button>
-                            </div>
-                            <div class="input-group">
-                                <label for="get-reg-value">Value</label>
-                                <div class="text">
-                                    <span id="get-reg-value">0x1234</span>
-                                </div>
-                            </div>
                         </section>
                         <hr style="width:100%">
-                        <label for="nav-toggle-2640pll" class="toggle-section-label">&#9776;&nbsp;&nbsp;CLK</label><input type="checkbox" id="nav-toggle-2640pll" class="hidden toggle-section-button" checked="checked">
-                        <section class="toggle-section">
-
-                            <div class="input-group"><label for="2640pll1">CLK 2X</label><div class="switch"><input id="2640pll1" type="checkbox" class="reg-action" reg="0x111" offset="7" mask="0x01"><label class="slider" for="2640pll1"></label></div></div>
-
-                            <div class="input-group"><label for="2640pll3">CLK DIV</label><div class="text">0<input id="2640pll3" type="text" minlength="1" maxlength="2" size="2" value="1" class="reg-action" reg="0x111" offset="0" mask="0x3f">63</div></div>
-                            <div class="input-group"><label for="2640pll5">Auto PCLK</label><div class="switch"><input id="2640pll5" type="checkbox" class="reg-action" reg="0xd3" offset="7" mask="0x01"><label class="slider" for="2640pll5"></label></div></div>
-                            <div class="input-group"><label for="2640pll4">PCLK DIV</label><div class="text">0<input id="2640pll4" type="text" minlength="1" maxlength="3" size="3" value="4" class="reg-action" reg="0xd3" offset="0" mask="0x7f">127</div></div>
-
-                        </section>
+                  
                         <hr style="width:100%">
                         <label for="nav-toggle-win" class="toggle-section-label">&#9776;&nbsp;&nbsp;Window</label><input type="checkbox" id="nav-toggle-win" class="hidden toggle-section-button" checked="checked">
                         <section class="toggle-section">
 
                             <div class="input-group">
                                 <label for="start-x">Sensor Resolution</label><select id="start-x">
+                                   <option value="3">3X3 (3x3)</option>
                                     <option value="2">CIF (400x296)</option>
                                     <option value="1">SVGA (800x600)</option>
                                     <option value="0" selected="selected">UXGA (1600x1200)</option>
@@ -757,6 +602,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   function setWindow(start_x, start_y, end_x, end_y, offset_x, offset_y, total_x, total_y, output_x, output_y, scaling, binning, cb){
+    console.log(start_x);
+    console.log("ahhhhhhh")
     fetchUrl(`${baseHost}/resolution?sx=${start_x}&sy=${start_y}&ex=${end_x}&ey=${end_y}&offx=${offset_x}&offy=${offset_y}&tx=${total_x}&ty=${total_y}&ox=${output_x}&oy=${output_y}&scale=${scaling}&binning=${binning}`, cb);
   }
 
@@ -801,7 +648,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   const setResButton = document.getElementById('set-resolution')
   setResButton.onclick = () => {
+    onsole.log("ahhhhhhhhh");
     let start_x = parseInt(document.getElementById('start-x').value);
+    console.log(start_x);
     let offset_x = parseInt(document.getElementById('offset-x').value);
     let offset_y = parseInt(document.getElementById('offset-y').value);
     let total_x = parseInt(document.getElementById('total-x').value);
