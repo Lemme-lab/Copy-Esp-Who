@@ -1033,6 +1033,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       disable(enrollButton)
       updateValue(recognize, false)
     }
+    return;
   }
 
   recognize.onchange = () => {
@@ -1051,7 +1052,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
     } else {
       disable(enrollButton)
     }
+    return;
   }
+
 })
 
         </script>
