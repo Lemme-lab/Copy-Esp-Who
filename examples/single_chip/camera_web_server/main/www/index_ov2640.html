@@ -1022,10 +1022,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   detect.onchange = () => {
     if (framesize.value > 5) {
-      alert("Please select CIF or lower resolution before enabling this feature!");
+      console.log("Setting Framesize to 4");
       framesize= 4;
       updateValue(detect, false)
     }
+    console.log("Setting Camerasize to 2");
     setCamRes();
     updateConfig(detect)
     if (!detect.checked) {
@@ -1036,11 +1037,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   recognize.onchange = () => {
     if (framesize.value > 5) {
-      alert("Please select CIF or lower resolution before enabling this feature!");
+      console.log("Setting Framesize to 4");
       framesize = 4;
       updateValue(recognize, false)
       
     }
+    console.log("Setting Camerasize to 2");
     setCamRes();
     updateConfig(recognize)
     if (recognize.checked) {
