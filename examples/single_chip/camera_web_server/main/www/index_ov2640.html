@@ -980,7 +980,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   // Detection and framesize
   const detect = document.getElementById('face_detect')
   const recognize = document.getElementById('face_recognize')
-  const framesize = document.getElementById('framesize')
+  framesize = document.getElementById('framesize')
 
   framesize.onchange = () => {
     updateConfig(framesize)
