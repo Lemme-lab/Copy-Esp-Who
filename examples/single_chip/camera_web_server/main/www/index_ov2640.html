@@ -1002,8 +1002,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   detect.onchange = () => {
     if (framesize.value > 5) {
-      console.log("Setting Framesize to 4");
-      document.getElementById('framesize').value = "4";
+      console.log("Setting Framesize to 4")
+      document.getElementById('framesize').value = "4"
+      framesize_change()
       updateValue(detect, false)
     }
     console.log("Setting Camerasize to 2");
@@ -1018,8 +1019,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   recognize.onchange = () => {
     if (framesize.value > 5) {
-      console.log("Setting Framesize to 4");
-      document.getElementById('framesize').value = "4";
+      console.log("Setting Framesize to 4")
+      document.getElementById('framesize').value = "4"
+      framesize_change()
       updateValue(recognize, false)
       
     }
