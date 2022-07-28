@@ -1424,6 +1424,11 @@ static esp_err_t name_handler(httpd_req_t *req)
 
     int i = 0;
 
+
+       if (i < 0) {
+        return httpd_resp_send_500(req);
+    }
+
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     return httpd_resp_send(req, NULL, 0);
 }
