@@ -963,7 +963,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 
   const setCamRes = () => {
-    let start_x = parseInt("2");
+    let start_x = parseInt(document.getElementById('start-x').value);
     console.log(start_x)
     let offset_x = parseInt(document.getElementById('offset-x').value);
     let offset_y = parseInt(document.getElementById('offset-y').value);
@@ -1010,13 +1010,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
       updateValue(detect, false)
     }
     console.log("Setting Camerasize to 2");
+    document.getElementById('start-x').value = "2"
     setCamRes();
     updateConfig(detect)
     if (!detect.checked) {
       disable(enrollButton)
       updateValue(recognize, false)
     }
-    return;
   }
 
   recognize.onchange = () => {
@@ -1028,6 +1028,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       
     }
     console.log("Setting Camerasize to 2");
+    document.getElementById('start-x').value = "2"
     setCamRes();
     updateConfig(recognize)
     if (recognize.checked) {
@@ -1036,7 +1037,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
     } else {
       disable(enrollButton)
     }
-    return;
   }
 
 })
