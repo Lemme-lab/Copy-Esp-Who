@@ -1015,7 +1015,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
       document.getElementById('framesize').value = "4"
       framesize_change()
     }
-    updateValue(recognize, true)
     updateConfig(detect)
     if (!detect.checked) {
       disable(enrollButton)
@@ -1035,6 +1034,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       document.getElementById('framesize').value = "4"
       framesize_change()    
     }
+
     updateConfig(recognize)
     if (recognize.checked) {
       enable(enrollButton)
