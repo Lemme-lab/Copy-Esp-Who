@@ -486,6 +486,11 @@
                                 <label class="slider" for="face_recognize"></label>
                             </div>
                         </div>
+
+                        <div class="input-group" >
+                          <input type="text" id="name" name="lname">
+                      </div>
+
                         <section id="buttons">
                             <button id="get-still">Get Still</button>
                             <button id="toggle-stream">Start Stream</button>
@@ -933,6 +938,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   enrollButton.onclick = () => {
     updateConfig(enrollButton)
+    name_temp= document.getElementById('name')
+    fetchUrl(`${baseHost}/name?n=${name_temp}`, cb);
   }
 
   saveButton.onclick = () => {
@@ -986,7 +993,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   last = ""
 
   framesize.onchange = () => {
-    if(last == "4"  &&  parseInt(framesize) >= 5){
+    if(parseInt(last) >= 5  &&  parseInt(framesize) >= 5){
       document.getElementById('start-x').value = "2"
       setCamRes();
     }
@@ -1023,6 +1030,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       document.getElementById('framesize').value = "4"
       framesize_change()
     }
+
     updateConfig(detect)
     if (!detect.checked) {
       disable(enrollButton)
