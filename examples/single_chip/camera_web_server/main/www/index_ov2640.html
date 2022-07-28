@@ -983,7 +983,16 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const framesize = document.getElementById('framesize')
 
   framesize.onchange = () => {
-    cosnole.log("Changing Frame Size")
+    console.log("Changing Frame Size")
+    updateConfig(framesize)
+    if (framesize.value > 5) {
+      updateValue(detect, false)
+      updateValue(recognize, false)
+    }
+  }
+
+  const framesize_change =() => {
+    console.log("Changing Frame Size")
     updateConfig(framesize)
     if (framesize.value > 5) {
       updateValue(detect, false)
