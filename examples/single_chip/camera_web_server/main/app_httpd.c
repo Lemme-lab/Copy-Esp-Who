@@ -1124,6 +1124,39 @@ static esp_err_t monitor_handler(httpd_req_t *req)
     return httpd_resp_send(req, (const char *)monitor_html_gz_start, monitor_html_gz_len);
 }
 
+static esp_err_t name_handler(httpd_req_t *req)
+{
+    char *buf = NULL;
+
+    if (parse_get(req, &buf) != ESP_OK) {
+        return ESP_FAIL;
+    }
+
+    int startX = parse_get_var(buf, "sx", 0);
+    int startY = parse_get_var(buf, "sy", 0);
+    int endX = parse_get_var(buf, "ex", 0);
+    int endY = parse_get_var(buf, "ey", 0);
+    int offsetX = parse_get_var(buf, "offx", 0);
+    int offsetY = parse_get_var(buf, "offy", 0);
+    int totalX = parse_get_var(buf, "tx", 0);
+    int totalY = parse_get_var(buf, "ty", 0);
+    int outputX = parse_get_var(buf, "ox", 0);
+    int outputY = parse_get_var(buf, "oy", 0);
+    bool scale = parse_get_var(buf, "scale", 0) == 1;
+    bool binning = parse_get_var(buf, "binning", 0) == 1;
+    free(buf);
+
+    ESP_LOGI(TAG, "Set Window: Start: %d %d, End: %d %d, Offset: %d %d, Total: %d %d, Output: %d %d, Scale: %u, Binning: %u", startX, startY, endX, endY, offsetX, offsetY, totalX, totalY, outputX, outputY, scale, binning);
+    sensor_t *s = esp_camera_sensor_get();
+    int res = s->set_res_raw(s, startX, startY, endX, endY, offsetX, offsetY, totalX, totalY, outputX, outputY, scale, binning);
+    if (res) {
+        return httpd_resp_send_500(req);
+    }
+
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    return httpd_resp_send(req, NULL, 0);
+}
+
 void app_httpd_main()
 {
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
@@ -1205,6 +1238,13 @@ void app_httpd_main()
         .uri = "/monitor",
         .method = HTTP_GET,
         .handler = monitor_handler,
+        .user_ctx = NULL};
+
+
+    httpd_uri_t name_uri = {
+        .uri = "/name",
+        .method = HTTP_GET,
+        .handler = win_handler,
         .user_ctx = NULL};
 
     ra_filter_init(&ra_filter, 20);

@@ -1003,15 +1003,19 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   detect.onchange = () => {
+    if( document.getElementById('start-x').value != "2"){
     console.log("Setting Camerasize to 2");
     document.getElementById('start-x').value = "2"
     setCamRes();
+    }
+
 
     if (framesize.value > 5) {
       console.log("Setting Framesize to 4")
       document.getElementById('framesize').value = "4"
       framesize_change()
     }
+    updateValue(recognize, true)
     updateConfig(detect)
     if (!detect.checked) {
       disable(enrollButton)
@@ -1020,9 +1024,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   recognize.onchange = () => {
+    if( document.getElementById('start-x').value != "2"){
     console.log("Setting Camerasize to 2");
     document.getElementById('start-x').value = "2"
     setCamRes();
+    }
 
     if (framesize.value > 5) {
       console.log("Setting Framesize to 4")
