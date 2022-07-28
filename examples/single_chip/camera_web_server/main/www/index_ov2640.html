@@ -938,7 +938,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   enrollButton.onclick = () => {
     updateConfig(enrollButton)
-    name_temp= document.getElementById('name')
+    name_temp= document.getElementById('name').value
     console.log(name_temp)
     fetchUrl(`${baseHost}/name?var=${name_temp}`, function(code, txt){
       if(code != 200){
