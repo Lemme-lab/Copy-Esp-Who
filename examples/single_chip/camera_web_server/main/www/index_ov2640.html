@@ -980,7 +980,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   // Detection and framesize
   const detect = document.getElementById('face_detect')
   const recognize = document.getElementById('face_recognize')
-  framesize = document.getElementById('framesize')
+  const framesize = document.getElementById('framesize')
 
   framesize.onchange = () => {
     cosnole.log("Changing Frame Size")
@@ -994,7 +994,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   detect.onchange = () => {
     if (framesize.value > 5) {
       console.log("Setting Framesize to 4");
-      framesize= 4;
+      document.getElementById('framesize').value = "4";
       updateValue(detect, false)
     }
     console.log("Setting Camerasize to 2");
@@ -1010,7 +1010,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   recognize.onchange = () => {
     if (framesize.value > 5) {
       console.log("Setting Framesize to 4");
-      framesize = 4;
+      document.getElementById('framesize').value = "4";
       updateValue(recognize, false)
       
     }
