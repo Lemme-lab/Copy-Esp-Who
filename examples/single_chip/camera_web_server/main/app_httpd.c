@@ -196,7 +196,7 @@ static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, in
     fb.format = FB_BGR888;
 
 
-    int x0, y0, j;
+     int x0, y0, j;
      for (j = 0; j < 10; j+=2) {
             x0 = (int)boxes->landmark[i].landmark_p[j];
             y0 = (int)boxes->landmark[i].landmark_p[j+1];
@@ -207,9 +207,13 @@ static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, in
     {
         // rectangle box
         x = (int)boxes->box[i].box_p[0];
+        ESP_LOGE(x);
         y = (int)boxes->box[i].box_p[1];
+        ESP_LOGE(y);
         w = (int)boxes->box[i].box_p[2] - x + 1;
+        ESP_LOGE(w);
         h = (int)boxes->box[i].box_p[3] - y + 1;
+        ESP_LOGE(h);
         fb_gfx_drawFastHLine(&fb, x, y, w, color);
         fb_gfx_drawFastHLine(&fb, x, y + h - 1, w, color);
         fb_gfx_drawFastVLine(&fb, x, y, h, color);
@@ -254,6 +258,7 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
         else
         {
             matched_id = recognize_face(&id_list, aligned_face);
+            
             if (matched_id >= 0)
             {
                 ESP_LOGW(TAG, "Match Face ID: %u", matched_id);
