@@ -997,6 +997,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       updateValue(recognize, false)
     }
     last = framesize
+    console.log(last)
   }
 
   const framesize_change =() => {
@@ -1006,6 +1007,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       updateValue(detect, false)
       updateValue(recognize, false)
     }
+    last = framesize
   }
 
   detect.onchange = () => {
