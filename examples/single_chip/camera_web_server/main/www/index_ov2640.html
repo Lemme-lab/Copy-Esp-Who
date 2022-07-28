@@ -963,6 +963,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 
   const setCamRes = () => {
+    let start_x = parseInt("2");
+    console.log(start_x)
     let offset_x = parseInt(document.getElementById('offset-x').value);
     let offset_y = parseInt(document.getElementById('offset-y').value);
     let total_x = parseInt(document.getElementById('total-x').value);
@@ -970,7 +972,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let output_x = parseInt(document.getElementById('output-x').value);
     let output_y = parseInt(document.getElementById('output-y').value);
 
-    setWindow(2, 0, 0, 0, offset_x, offset_y, total_x, total_y, output_x, output_y, false, false, function(code, txt){
+    setWindow(start_x, 0, 0, 0, offset_x, offset_y, total_x, total_y, output_x, output_y, false, false, function(code, txt){
       if(code != 200){
         alert('Error['+code+']: '+txt);
       }
@@ -1008,7 +1010,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       updateValue(detect, false)
     }
     console.log("Setting Camerasize to 2");
-    //setCamRes();
+    setCamRes();
     updateConfig(detect)
     if (!detect.checked) {
       disable(enrollButton)
@@ -1026,7 +1028,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       
     }
     console.log("Setting Camerasize to 2");
-    //setCamRes();
+    setCamRes();
     updateConfig(recognize)
     if (recognize.checked) {
       enable(enrollButton)
