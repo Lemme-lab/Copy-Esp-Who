@@ -1405,23 +1405,24 @@ static esp_err_t monitor_handler(httpd_req_t *req)
 static esp_err_t name_handler(httpd_req_t *req)
 {
     char *buf = NULL;
+    char variable[32];
+    char value[32];
 
     if (parse_get(req, &buf) != ESP_OK) {
         return ESP_FAIL;
     }
+    if (httpd_query_key_value(buf, "var", variable, sizeof(variable)) != ESP_OK){
+        free(buf);
+        httpd_resp_send_404(req);
+        return ESP_FAIL;
+    }
 
-    char name_temp[] = parse_get_var(buf, "n", 0);
 
-    strcpy(name[id_list.tail], name_temp);
+
+    strcpy(name[id_list.tail], variable);
     free(buf);
 
-    ESP_LOGI(TAG, "Set Window: Start: %d" , name);
-    sensor_t *s = esp_camera_sensor_get();
     int i = 0;
-    
-    if (i == 0) {
-        return httpd_resp_send_500(req);
-    }
 
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     return httpd_resp_send(req, NULL, 0);
