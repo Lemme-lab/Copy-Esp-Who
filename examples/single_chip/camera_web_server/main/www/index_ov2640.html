@@ -983,6 +983,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   framesize = document.getElementById('framesize')
 
   framesize.onchange = () => {
+    cosnole.log("Changing Frame Size")
     updateConfig(framesize)
     if (framesize.value > 5) {
       updateValue(detect, false)
