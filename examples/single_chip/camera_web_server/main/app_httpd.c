@@ -88,7 +88,7 @@ static mtmn_config_t mtmn_config = {0};
 static int8_t recognition_enabled = 0;
 static int8_t is_enrolling = 0;
 static face_id_list id_list = {0};
-static char name[10][15];
+static char name_set[10][15];
 static int last_id = 0;
 #endif
 
@@ -257,8 +257,8 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
             matched_id = recognize_face(&id_list, aligned_face);
             if (matched_id >= 0)
             {
-                ESP_LOGW(TAG, "Match Face ID: %c", name(1));
-                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %c", name(1));
+                ESP_LOGW(TAG, "Match Face ID: %c", name_set(matched_id));
+                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %c", name_set(matched_id));
             }
             else
             {
