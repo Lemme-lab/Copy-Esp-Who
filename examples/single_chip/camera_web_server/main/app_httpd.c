@@ -33,6 +33,23 @@ static const char *TAG = "camera_httpd";
 char name[10][15];
 
 
+static void configure_led(int input)
+{
+    gpio_reset_pin(input);
+    /* Set the GPIO as a push/pull output */
+    gpio_set_direction(input, GPIO_MODE_OUTPUT);
+}
+
+static void blink_led(int input, int value)
+{
+    /* Set the GPIO level according to the state (LOW or HIGH)*/
+    gpio_set_level(input,value);
+}
+
+
+
+
+
 #endif
 
 #if CONFIG_ESP_FACE_DETECT_ENABLED
@@ -322,11 +339,15 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
             
             if (matched_id >= 0)
             {
+                blink_led(22,0);
+                blink_led(21,1);
                 ESP_LOGW(TAG, "Match Face ID: %u", matched_id);
                 rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %u", name[matched_id]);
             }
             else
             {
+                blink_led(22,1);
+                blink_led(21,0);
                 ESP_LOGW(TAG, "No Match Found");
                 rgb_print(image_matrix, FACE_COLOR_RED, "Intruder Alert!");
                 matched_id = -1;
@@ -451,6 +472,8 @@ static esp_err_t capture_handler(httpd_req_t *req)
     if (!detection_enabled || fb->width > 400)
     {
 #endif
+        blink_led(22,0);
+        blink_led(21,0);  
         size_t fb_len = 0;
         if (fb->format == PIXFORMAT_JPEG)
         {
@@ -1405,25 +1428,32 @@ static esp_err_t monitor_handler(httpd_req_t *req)
 static esp_err_t name_handler(httpd_req_t *req)
 {
     char *buf = NULL;
-    char variable[32];
-    char value[32];
 
     if (parse_get(req, &buf) != ESP_OK) {
         return ESP_FAIL;
     }
-    if (httpd_query_key_value(buf, "var", variable, sizeof(variable)) != ESP_OK){
-        free(buf);
-        httpd_resp_send_404(req);
-        return ESP_FAIL;
-    }
 
-
-
-    strcpy(name[id_list.tail], variable);
+    int startX = parse_get_var(buf, "sx", 0);
+    int startY = parse_get_var(buf, "sy", 0);
+    int endX = parse_get_var(buf, "ex", 0);
+    int endY = parse_get_var(buf, "ey", 0);
+    int offsetX = parse_get_var(buf, "offx", 0);
+    int offsetY = parse_get_var(buf, "offy", 0);
+    int totalX = parse_get_var(buf, "tx", 0);
+    int totalY = parse_get_var(buf, "ty", 0);
+    int outputX = parse_get_var(buf, "ox", 0);
+    int outputY = parse_get_var(buf, "oy", 0);
+    bool scale = parse_get_var(buf, "scale", 0) == 1;
+    bool binning = parse_get_var(buf, "binning", 0) == 1;
     free(buf);
 
-    int i = 0;
-    
+    ESP_LOGI(TAG, "Set Window: Start: %d %d, End: %d %d, Offset: %d %d, Total: %d %d, Output: %d %d, Scale: %u, Binning: %u", startX, startY, endX, endY, offsetX, offsetY, totalX, totalY, outputX, outputY, scale, binning);
+    sensor_t *s = esp_camera_sensor_get();
+    int res = s->set_res_raw(s, startX, startY, endX, endY, offsetX, offsetY, totalX, totalY, outputX, outputY, scale, binning);
+    int res2 = s->set_res_raw(s, 1, startY, endX, endY, offsetX, offsetY, totalX, totalY, outputX, outputY, scale, binning);
+    if (res) {
+        return httpd_resp_send_500(req);
+    }
 
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     return httpd_resp_send(req, NULL, 0);
@@ -1431,6 +1461,9 @@ static esp_err_t name_handler(httpd_req_t *req)
 
 void app_httpd_main()
 {
+    configure_led(21);
+    configure_led(22);
+
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
     config.max_uri_handlers = 16;
 
@@ -1514,7 +1547,7 @@ void app_httpd_main()
 
 
     httpd_uri_t name_uri = {
-        .uri = "/name",
+        .uri = "/setname",
         .method = HTTP_GET,
         .handler = name_handler,
         .user_ctx = NULL};
