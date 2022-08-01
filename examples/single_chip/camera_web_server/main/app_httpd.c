@@ -78,6 +78,9 @@ static const char *_STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %
 httpd_handle_t stream_httpd = NULL;
 httpd_handle_t camera_httpd = NULL;
 
+static const char name_set[10][15];
+static const int last_id = 0;
+
 #if CONFIG_ESP_FACE_DETECT_ENABLED
 
 static int8_t detection_enabled = 0;
@@ -88,8 +91,7 @@ static mtmn_config_t mtmn_config = {0};
 static int8_t recognition_enabled = 0;
 static int8_t is_enrolling = 0;
 static face_id_list id_list = {0};
-static char name_set[10][15];
-static int last_id = 0;
+
 #endif
 
 #endif
