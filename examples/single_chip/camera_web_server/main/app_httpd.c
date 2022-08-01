@@ -24,7 +24,7 @@
 #include "app_camera.h"
 
 
-static const char *namearr[20];
+static char name_set[10][15];
 static int last_id = 0;
 
 #if defined(ARDUINO_ARCH_ESP32) && defined(CONFIG_ARDUHAL_ESP_LOG)
@@ -259,8 +259,8 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
             matched_id = recognize_face(&id_list, aligned_face);
             if (matched_id >= 0)
             {
-                ESP_LOGW(TAG, "Match Face ID: %c", namearr(matched_id));
-                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %c", namearr(matched_id));
+                ESP_LOGW(TAG, "Match Face ID: %c", name_set[matched_id]);
+                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %c", name_set[matched_id]);
             }
             else
             {
@@ -1136,7 +1136,10 @@ static esp_err_t name_handler(httpd_req_t *req)
         httpd_resp_send_404(req);
         return ESP_FAIL;
     }
-    namearr[last_id] = variable;
+
+
+
+    strcpy(name_set[last_id], variable);
     free(buf);
 
     int i = 0;
