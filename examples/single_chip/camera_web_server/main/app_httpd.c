@@ -257,8 +257,8 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
             matched_id = recognize_face(&id_list, aligned_face);
             if (matched_id >= 0)
             {
-                ESP_LOGW(TAG, "Match Face ID: %c", name(matched_id));
-                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %c", name(matched_id));
+                ESP_LOGW(TAG, "Match Face ID: %c", name(1));
+                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %c", name(1));
             }
             else
             {
