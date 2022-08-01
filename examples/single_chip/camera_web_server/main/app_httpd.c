@@ -268,6 +268,7 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
                 rgb_print(image_matrix, FACE_COLOR_RED, "Intruder Alert!");
                 matched_id = -1;
             }
+            last_id = matched_id;
         }
     }
     else
