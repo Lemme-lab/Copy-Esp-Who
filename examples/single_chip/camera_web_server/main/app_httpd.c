@@ -23,6 +23,9 @@
 #include "app_mdns.h"
 #include "app_camera.h"
 
+char name[10][15];
+int last_id = 0;
+
 #if defined(ARDUINO_ARCH_ESP32) && defined(CONFIG_ARDUHAL_ESP_LOG)
 #include "esp32-hal-log.h"
 #define TAG ""
@@ -246,14 +249,15 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
                 is_enrolling = 0;
                 ESP_LOGD(TAG, "Enrolled Face ID: %d", id_list.tail);
             }
+            last_id =  id_list.tail;
         }
         else
         {
             matched_id = recognize_face(&id_list, aligned_face);
             if (matched_id >= 0)
             {
-                ESP_LOGW(TAG, "Match Face ID: %u", matched_id);
-                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %u", matched_id);
+                ESP_LOGW(TAG, "Match Face ID: %u", name(matched_id));
+                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %u", name(matched_id));
             }
             else
             {
@@ -1132,7 +1136,7 @@ static esp_err_t name_handler(httpd_req_t *req)
 
 
 
-    //strcpy(name[id_list.tail], variable);
+    strcpy(name[last_id], variable);
     free(buf);
 
     int i = 0;
