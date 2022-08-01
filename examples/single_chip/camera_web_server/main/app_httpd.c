@@ -23,8 +23,8 @@
 #include "app_mdns.h"
 #include "app_camera.h"
 
-char name[10][15];
-int last_id = 0;
+static char name[10][15];
+static int last_id = 0;
 
 #if defined(ARDUINO_ARCH_ESP32) && defined(CONFIG_ARDUHAL_ESP_LOG)
 #include "esp32-hal-log.h"
