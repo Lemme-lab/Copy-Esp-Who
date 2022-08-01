@@ -19,6 +19,8 @@ extern "C" {
 #endif
 
 void app_httpd_main();
+char name_set[10][15];
+static int last_id = 0;
 
 #ifdef __cplusplus
 }

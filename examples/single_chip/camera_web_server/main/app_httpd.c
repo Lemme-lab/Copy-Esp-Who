@@ -24,6 +24,8 @@
 #include "app_camera.h"
 
 
+static char name_set[10][15];
+static int last_id = 0;
 
 #if defined(ARDUINO_ARCH_ESP32) && defined(CONFIG_ARDUHAL_ESP_LOG)
 #include "esp32-hal-log.h"
@@ -78,8 +80,6 @@ static const char *_STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %
 httpd_handle_t stream_httpd = NULL;
 httpd_handle_t camera_httpd = NULL;
 
-static const char name_set[10][15];
-static const int last_id = 0;
 
 #if CONFIG_ESP_FACE_DETECT_ENABLED
 
@@ -1139,7 +1139,7 @@ static esp_err_t name_handler(httpd_req_t *req)
 
 
 
-    strcpy(name[last_id], variable);
+    strcpy(name_set[last_id], variable);
     free(buf);
 
     int i = 0;
@@ -1148,6 +1148,8 @@ static esp_err_t name_handler(httpd_req_t *req)
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     return httpd_resp_send(req, NULL, 0);
 }
+
+
 
 void app_httpd_main()
 {
