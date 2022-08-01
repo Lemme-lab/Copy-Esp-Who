@@ -288,7 +288,7 @@ static void draw_face_boxes2(dl_matrix3du_t *image_matrix, box_array_t *boxes, i
     {
         // rectangle box
 
-        fb_gfx_drawFastHLine(&fb, x_save*7, y_save*5, w,_save color);
+        fb_gfx_drawFastHLine(&fb, x_save*7, y_save*5, w_save, color);
         fb_gfx_drawFastHLine(&fb, x_save*7, y_save*5 + h - 1, w, color);
         fb_gfx_drawFastVLine(&fb, x_save*7, y_save*5, h, color);
         fb_gfx_drawFastVLine(&fb, x_save*7 + w_save - 1, y_save*5, h_save, color);
