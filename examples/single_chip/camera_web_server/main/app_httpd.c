@@ -261,14 +261,9 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
             {
                 ESP_LOGW(TAG, "Match Face ID: %s", name_set[matched_id]);
                 rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %s", name_set[matched_id]);
-
-                int j;
-                 for (j = 0; j < 20; ++j)
-                 {
-                     ESP_LOGE(TAG, "Name: %s", name_set[j]);
-                 }
-                 ESP_LOGW(TAG, "Matched Face ID: %d", matched_id);
-                 last_id = matched_id;
+                ESP_LOGW(TAG, "Matched Face ID: %d", matched_id);
+                last_id = matched_id;
+                ESP_LOGW(TAG, "Last ID: %d",last_id);
             }
             else
             {
