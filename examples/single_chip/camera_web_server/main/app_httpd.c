@@ -261,6 +261,13 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
             {
                 ESP_LOGW(TAG, "Match Face ID: %s", name_set[matched_id]);
                 rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %s", name_set[matched_id]);
+
+                 for (i = 1; i < 20; ++i)
+                 {
+                     ESP_LOGE(TAG, "Name: %s", name_set[i]);
+                 }
+                 ESP_LOGW(TAG,matched_id);
+                 last_id = matched_id;
             }
             else
             {
@@ -268,7 +275,6 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
                 rgb_print(image_matrix, FACE_COLOR_RED, "Intruder Alert!");
                 matched_id = -1;
             }
-            last_id = matched_id;
         }
     }
     else
