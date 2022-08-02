@@ -1134,7 +1134,7 @@ static esp_err_t name_handler(httpd_req_t *req)
     if (parse_get(req, &buf) != ESP_OK) {
         return ESP_FAIL;
     }
-    if (httpd_query_key_value(buf, "var", variable, sizeof(variable)) != ESP_OK){
+    if (httpd_query_key_value(buf, "variable", variable, sizeof(variable)) != ESP_OK){
         free(buf);
         httpd_resp_send_404(req);
         return ESP_FAIL;
