@@ -262,9 +262,10 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
                 ESP_LOGW(TAG, "Match Face ID: %s", name_set[matched_id]);
                 rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %s", name_set[matched_id]);
 
-                 for (i = 1; i < 20; ++i)
+                int j;
+                 for (j = 0; j < 20; ++j)
                  {
-                     ESP_LOGE(TAG, "Name: %s", name_set[i]);
+                     ESP_LOGE(TAG, "Name: %s", name_set[j]);
                  }
                  ESP_LOGW(TAG,matched_id);
                  last_id = matched_id;
@@ -1149,13 +1150,14 @@ static esp_err_t name_handler(httpd_req_t *req)
     strcpy(name_set[last_id], variable);
     free(buf);
     
-    for (i = 1; i < 20; ++i)
+    int k;
+    for (k = 0; k < 20; ++k)
     {
-       ESP_LOGE(TAG, "Name: %s", name_set[i]);
+       ESP_LOGE(TAG, "Name: %s", name_set[k]);
     }
 
 
-    int i = 0;
+    int k = 0;
     
 
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
