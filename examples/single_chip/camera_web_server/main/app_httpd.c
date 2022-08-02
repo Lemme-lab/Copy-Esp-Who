@@ -24,7 +24,7 @@
 #include "app_camera.h"
 
 
-static char name_set[10][15];
+static char name_set[20][20];
 static int last_id = 0;
 
 #if defined(ARDUINO_ARCH_ESP32) && defined(CONFIG_ARDUHAL_ESP_LOG)
@@ -1142,6 +1142,12 @@ static esp_err_t name_handler(httpd_req_t *req)
 
     strcpy(name_set[last_id], variable);
     free(buf);
+    
+    for (i = 1; i < 20; ++i)
+    {
+       ESP_LOGE(TAG, "Name: %s", name_set[i]);
+    }
+
 
     int i = 0;
     
