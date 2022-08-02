@@ -260,7 +260,7 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
             if (matched_id >= 0)
             {
                 ESP_LOGW(TAG, "Match Face ID: %d", matched_id);
-                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %d", matched_id);
+                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Hello Subject %s", matched_id);
                 ESP_LOGW(TAG, "Matched Face ID: %d", matched_id);
                 ESP_LOGW(TAG, "Last ID: %d",last_id);
             }
@@ -1126,6 +1126,7 @@ static esp_err_t monitor_handler(httpd_req_t *req)
 
 static esp_err_t name_handler(httpd_req_t *req)
 {
+     ESP_LOGE(TAG, "Fuuuuuuuucccccckkkk");
     char *buf = NULL;
     char variable[32];
     char value[32];
