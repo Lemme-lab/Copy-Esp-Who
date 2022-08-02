@@ -940,7 +940,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     updateConfig(enrollButton)
     name_temp= document.getElementById('name').value
     console.log(name_temp)
-    fetchUrl(`${baseHost}/setname?variable=${name_temp}`, function(code, txt){
+    fetchUrl(`${baseHost}/setname?var=${name_temp}`, function(code, txt){
       if(code != 200){
         alert('Error['+code+']: '+txt);
       }

@@ -24,7 +24,7 @@
 #include "app_camera.h"
 
 
-static char name_set[20][20];
+static char name_set[10][15];
 static int last_id = 0;
 
 #if defined(ARDUINO_ARCH_ESP32) && defined(CONFIG_ARDUHAL_ESP_LOG)
@@ -260,9 +260,7 @@ static int run_face_recognition(dl_matrix3du_t *image_matrix, box_array_t *net_b
             if (matched_id >= 0)
             {
                 ESP_LOGW(TAG, "Match Face ID: %s", name_set[matched_id]);
-                rgb_printf(image_matrix, FACE_COLOR_GREEN, "Match Face ID: %s", name_set[matched_id]);
-                ESP_LOGW(TAG, "Matched Face ID: %d", matched_id);
-                ESP_LOGW(TAG, "Last ID: %d",last_id);
+                rgb_printf(image_matrix, FACE_COLOR_GREEN, "HI %s", name_set[matched_id]);
             }
             else
             {
@@ -1126,7 +1124,6 @@ static esp_err_t monitor_handler(httpd_req_t *req)
 
 static esp_err_t name_handler(httpd_req_t *req)
 {
-    ESP_LOGE(TAG, "Fuuuuuuuucccccckkkk");
     char *buf = NULL;
     char variable[32];
     char value[32];
@@ -1134,7 +1131,7 @@ static esp_err_t name_handler(httpd_req_t *req)
     if (parse_get(req, &buf) != ESP_OK) {
         return ESP_FAIL;
     }
-    if (httpd_query_key_value(buf, "variable", variable, sizeof(variable)) != ESP_OK){
+    if (httpd_query_key_value(buf, "var", variable, sizeof(variable)) != ESP_OK){
         free(buf);
         httpd_resp_send_404(req);
         return ESP_FAIL;
@@ -1144,13 +1141,8 @@ static esp_err_t name_handler(httpd_req_t *req)
 
     strcpy(name_set[last_id], variable);
     free(buf);
-    
-    int k;
-    for (k = 0; k < 20; ++k)
-    {
-       ESP_LOGE(TAG, "Name: %s", name_set[k]);
-    }
 
+    int i = 0;
     
 
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
