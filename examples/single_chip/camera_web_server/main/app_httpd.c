@@ -1127,7 +1127,32 @@ static esp_err_t monitor_handler(httpd_req_t *req)
 static esp_err_t name_handler(httpd_req_t *req)
 {
     ESP_LOGE(TAG, "Fuuuuuuuucccccckkkk");
+    char *buf = NULL;
+    char variable[32];
+    char value[32];
+
+    if (parse_get(req, &buf) != ESP_OK) {
+        return ESP_FAIL;
+    }
+    if (httpd_query_key_value(buf, "var", variable, sizeof(variable)) != ESP_OK){
+        free(buf);
+        httpd_resp_send_404(req);
+        return ESP_FAIL;
+    }
+
+
+
+    strcpy(name_set[last_id], variable);
+    free(buf);
     
+    int k;
+    for (k = 0; k < 20; ++k)
+    {
+       ESP_LOGE(TAG, "Name: %s", name_set[k]);
+    }
+
+    
+
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     return httpd_resp_send(req, NULL, 0);
 }
