@@ -1157,7 +1157,7 @@ static esp_err_t name_handler(httpd_req_t *req)
     }
 
 
-    int k = 0;
+    k = 0;
     
 
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
